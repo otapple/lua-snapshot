@@ -19,7 +19,7 @@ jobs:
     - name: Setup Lua/LuaJIT
       # You may pin to the exact commit or the version.
       # uses: xpol/setup-lua@84f642e19a1adbad98b74f9e69ab82d1e6b95e3e
-      uses: xpol/setup-lua@v0.3
+      uses: otapple/setup-lua@master
       with:
         # The version of Lua to install. Supported versions: Lua >= 5.1.0, LuaJIT >= 2.0.0
         lua-version: 5.4.3
