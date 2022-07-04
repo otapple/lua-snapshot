@@ -9,7 +9,7 @@ add_library(${PROJECT_NAME} SHARED snapshot.c)
 
 if(CMAKE_SYSTEM_NAME MATCHES "Windows")
     target_link_libraries(${PROJECT_NAME} lua)
-    target_link_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/.lua/lib)
+    target_link_directories(${PROJECT_NAME} PRIVATE .lua/lib)
 endif(CMAKE_SYSTEM_NAME MATCHES "Windows")
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/.lua/include)
+target_include_directories(${PROJECT_NAME} PRIVATE .lua/include)
