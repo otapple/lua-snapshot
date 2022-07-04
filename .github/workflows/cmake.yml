@@ -22,7 +22,7 @@ jobs:
       uses: otapple/setup-lua@master
       with:
         # The version of Lua to install. Supported versions: Lua >= 5.1.0, LuaJIT >= 2.0.0
-        lua-version: 5.4.3
+        lua-version: 5.3
     - uses: actions/checkout@v3
 
     - name: Configure CMake
