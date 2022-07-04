@@ -1,5 +1,5 @@
-#include "lua.h"
-#include "lauxlib.h"
+#include <lua.h>
+#include <lauxlib.h>
 
 static void mark_object(lua_State *L, lua_State *dL, const void * parent, const char * desc);
 

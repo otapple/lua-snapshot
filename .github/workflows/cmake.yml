@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v3
     - name: Setup Lua/LuaJIT
       # You may pin to the exact commit or the version.
       # uses: xpol/setup-lua@84f642e19a1adbad98b74f9e69ab82d1e6b95e3e
@@ -23,7 +24,6 @@ jobs:
       with:
         # The version of Lua to install. Supported versions: Lua >= 5.1.0, LuaJIT >= 2.0.0
         lua-version: 5.3
-    - uses: actions/checkout@v3
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
