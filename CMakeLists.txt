@@ -11,4 +11,5 @@ if(CMAKE_SYSTEM_NAME MATCHES "Windows")
     target_link_libraries(${PROJECT_NAME} lua)
 endif(CMAKE_SYSTEM_NAME MATCHES "Windows")
 
-# target_link_libraries(lua-snapshot lua)
+include_directories(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/.lua/include)
+link_directories(${PROJECT_NAME} ${CMAKE_SOURCE_DIR}/.lua/lib)
