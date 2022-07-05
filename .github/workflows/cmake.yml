@@ -5,39 +5,53 @@ on:
     branches: [ "master" ]
 
 env:
-  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Release
 
 jobs:
   build:
     strategy:
         matrix:
-          os: [windows-latest, ubuntu-latest]
-    # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
-    # You can convert this to a matrix build if you need cross-platform coverage.
-    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+          os: [macOS-latest, ubuntu-latest]
     runs-on: ${{ matrix.os }}
 
     steps:
     - uses: actions/checkout@v3
     - name: Setup Lua/LuaJIT
-      # You may pin to the exact commit or the version.
-      # uses: xpol/setup-lua@84f642e19a1adbad98b74f9e69ab82d1e6b95e3e
       uses: otapple/setup-lua@master
       with:
-        # The version of Lua to install. Supported versions: Lua >= 5.1.0, LuaJIT >= 2.0.0
         lua-version: 5.3
 
     - name: Configure CMake
-      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build
-      # Build your program with the given configuration
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
       
     - uses: actions/upload-artifact@v3
       with:
-        name: lua-snapshot
-        path: build/liblua-snapshot.*
+        name: ${{ matrix.os }}-lua-snapshot
+        path: build/liblua-snapshot.so
+
+  windows-build:
+    # strategy:
+    #     matrix:
+    #       platform: [win32, x64]
+    runs-on: windows-lastest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Lua/LuaJIT
+      uses: otapple/setup-lua@master
+      with:
+        lua-version: 5.3
+
+    - name: Configure CMake
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+
+    - name: Build
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+      
+    - uses: actions/upload-artifact@v3
+      with:
+        name: windows-lua-snapshot
+        path: build\Release\liblua-snapshot.dll
