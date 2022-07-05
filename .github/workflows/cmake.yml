@@ -37,7 +37,7 @@ jobs:
       # Build your program with the given configuration
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
       
-    uses: actions/upload-artifact@v3
-    with:
-      name: lua-snapshot
-      path: build/liblua-snapshot.*
+    - uses: actions/upload-artifact@v3
+      with:
+        name: lua-snapshot
+        path: build/liblua-snapshot.*
